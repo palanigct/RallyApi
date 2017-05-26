@@ -44,12 +44,7 @@ public class Common_Functions
 		int completed=0;
 		int accepted=0;
 		
-		int[] backlogs_cr = new int [10];
-		int[] defined_cr  = new int [10];
-		int[] in_progress_cr = new int [10];
-		int[] completed_cr = new int [10];
-		int[] accepted_cr = new int [10];
-		int[] total_cr = new int [10];
+		
 		
 		int total_count_testable=0;		
 		int backlogs_testable=0;
@@ -253,20 +248,7 @@ public class Common_Functions
                      
                      total_count_testable++;
                  }
-                 for(int i=0;i<CR_list.size();i++)
-                 {             	 
                  
-                	 	if(StringUtils.containsIgnoreCase(CRNumber, CR_list.get(i)))
-                	 	{
-                	 		if(state_temp.contains("Backlog")) 	backlogs_cr[i]++;
-                            if(state_temp.contains("Defined")) 	defined_cr[i]++;
-                            if(state_temp.contains("In-Progress")) in_progress_cr[i]++;
-                            if(state_temp.contains("Completed")) 	completed_cr[i]++;
-                            if(state_temp.contains("Accepted")) 	accepted_cr[i]++;  
-                            
-                            total_cr[i]++;
-                	 	}
-                 }
                  
               }//end of for --loop for all stories	 
      
@@ -277,8 +259,6 @@ public class Common_Functions
     	 Defects defect_details=new Defects();
     	 TestCases testcase_details=new TestCases();
     	 
-    	 UserStories_CR userstory_details_cr=new UserStories_CR();
-    	 
     	
     	 userstory_details.setAllTestable(backlogs_testable, defined_testable, in_progress_testable, completed_testable, accepted_testable, total_count_testable);
     	 userstory_details.setAll(backlogs, defined, in_progress, completed, accepted, total_count);
@@ -287,13 +267,10 @@ public class Common_Functions
     	 defect_details.setAllState(submitted, open, fixed, closed, reopen, ready_for_test, total_state);
     	 testcase_details.setAll(pass_tc, fail_tc, in_progress_tc, blocked_tc, no_run_tc, total_tc,0,0,0);    	 
     	 testcase_details.setAutomated_count(automated_count_tc);
-    	 testcase_details.setMethod_count(method_count_tc);
-    	 
+    	 testcase_details.setMethod_count(method_count_tc);    	 
     	 userstory_details.setTestableFieldCount(testable_field_count);
-    	 userstory_details_cr.setAll(backlogs_cr, defined_cr, in_progress_cr, completed_cr, accepted_cr, total_cr);
-    		 
-    	 team_status.setAll(userstory_details, defect_details, testcase_details);
-    	 team_status.setUserstories_cr(userstory_details_cr);
+    	 
+    	 team_status.setAll(userstory_details, defect_details, testcase_details);    	 
     	 return team_status;     
 	
 	}
@@ -530,6 +507,12 @@ public class Common_Functions
 		int completed=0;
 		int accepted=0;
 		
+		int[] backlogs_cr = new int [10];
+		int[] defined_cr  = new int [10];
+		int[] in_progress_cr = new int [10];
+		int[] completed_cr = new int [10];
+		int[] accepted_cr = new int [10];
+		int[] total_cr = new int [10];
 
 		int total_count_testable=0;		
 		int backlogs_testable=0;
@@ -729,6 +712,22 @@ public class Common_Functions
                      
                      total_count_testable++;
                  }
+                 
+                 for(int i=0;i<CR_list.size();i++)
+                 {             	 
+                 
+                	 	if(StringUtils.containsIgnoreCase(CRNumber, CR_list.get(i)))
+                	 	{
+                	 		if(state_temp.contains("Backlog")) 	backlogs_cr[i]++;
+                            if(state_temp.contains("Defined")) 	defined_cr[i]++;
+                            if(state_temp.contains("In-Progress")) in_progress_cr[i]++;
+                            if(state_temp.contains("Completed")) 	completed_cr[i]++;
+                            if(state_temp.contains("Accepted")) 	accepted_cr[i]++;  
+                            
+                            total_cr[i]++;
+                	 	}
+                 }
+                 
               }	 
      
         }finally {    }
@@ -737,7 +736,7 @@ public class Common_Functions
     	 UserStories userstory_details=new UserStories();
     	 Defects defect_details=new Defects();
     	 TestCases testcase_details=new TestCases();
-    	 
+    	 UserStories_CR userstory_details_cr=new UserStories_CR();
     	
     	 userstory_details.setAllTestable(backlogs_testable, defined_testable, in_progress_testable, completed_testable, accepted_testable, total_count_testable);
     	 userstory_details.setAll(backlogs, defined, in_progress, completed, accepted, total_count);
@@ -749,13 +748,51 @@ public class Common_Functions
     	 testcase_details.setMethod_count(method_count_tc);
     	 
     	 userstory_details.setTestableFieldCount(testable_field_count);
-    		 
+    	 userstory_details_cr.setAll(backlogs_cr, defined_cr, in_progress_cr, completed_cr, accepted_cr, total_cr);
+     		 
+    	 team_status.setUserstories_cr(userstory_details_cr);
     	 team_status.setAll(userstory_details, defect_details, testcase_details);
     	 return team_status; 
 		 
 	
 	}
 
+	public static UserStories_CR caculateCR(UserStories_CR userstory_details_cr,UserStories_CR userstory_details_cr_total,ArrayList<String> CR_list)
+	{
+		int[] backlogs_cr = userstory_details_cr.getBacklogs();
+		int[] defined_cr  = userstory_details_cr.getDefined();
+		int[] in_progress_cr = userstory_details_cr.getIn_progress();
+		int[] completed_cr = userstory_details_cr.getCompleted();
+		int[] accepted_cr = userstory_details_cr.getAccepted();
+		int[] total_cr = userstory_details_cr.getTotal();
+		
+		
+		int[] backlogs_total = userstory_details_cr_total.getBacklogs();
+		int[] defined_total  =userstory_details_cr_total.getDefined();
+		int[] in_progress_total = userstory_details_cr_total.getIn_progress();
+		int[] completed_total = userstory_details_cr_total.getCompleted();
+		int[] accepted_total = userstory_details_cr_total.getAccepted();
+		int[] total_total = userstory_details_cr_total.getTotal();
+		
+		
+		
+		
+		for(int i=0;i<CR_list.size();i++)
+		{   
+			backlogs_total[i]    += backlogs_cr[i];
+			defined_total[i]     += defined_cr[i];
+			in_progress_total[i] += in_progress_cr[i];
+			completed_total[i]   += completed_cr[i];
+			accepted_total[i]    += accepted_cr[i];
+			total_total[i]       += total_cr[i];
+		}
+		
+		userstory_details_cr_total.setAll(backlogs_total, defined_total, in_progress_total, completed_total, accepted_total, total_total);
+		userstory_details_cr_total.displayAll();
+		return userstory_details_cr_total;
+	}
+	
+	
 }
 
 

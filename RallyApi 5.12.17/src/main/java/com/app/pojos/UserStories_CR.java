@@ -182,6 +182,7 @@ public class UserStories_CR
     
     public void displayAll()
     {
-    	System.out.println(" back : "+this.backlogs+" defin : "+this.defined+" in_prog : "+this.in_progress+" comp : "+this.completed+" accp : "+this.accepted+ " total : "+this.total);
+    	for(int i=0;i<backlogs.length;i++,System.out.println(" "))
+    	   System.out.print( "CR"+i+":-  back : "+this.backlogs[i]+" defin : "+this.defined[i]+" in_prog : "+this.in_progress[i]+" comp : "+this.completed[i]+" accp : "+this.accepted[i]+ " total : "+this.total[i]);
     }
 }

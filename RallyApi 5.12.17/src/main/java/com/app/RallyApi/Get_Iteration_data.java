@@ -143,14 +143,20 @@ public class Get_Iteration_data
 	        restApi.setApplicationName(applicationName); 
 	        common_fun_obj.setRestApi(restApi);
 	        TeamStatus team_status=new TeamStatus();
+	        UserStories_CR userstory_CR_details = new UserStories_CR();
 	        
 			for(int i=0;i<team_list.size();i++)
 			{
 				System.out.println("======================="+team_list.get(i)+"========================");
 				String team_name=team_list.get(i);
-				ite_obj.get_Iteration_Status_details_for_team_and_sprint_CR(team_name, sprint_name,CR_list);
+				team_status=ite_obj.get_Iteration_Status_details_for_team_and_sprint_CR(team_name, sprint_name,CR_list);
+		        UserStories_CR temp=team_status.getUserstories_cr();
+		        userstory_CR_details=common_fun_obj.caculateCR(temp, userstory_CR_details, CR_list);
+				
 				System.out.println(team_name+"  success");	
 			}
+			userstory_CR_details.displayAll();
+			
 	    }
 		finally 
 		{
@@ -171,14 +177,19 @@ public class Get_Iteration_data
 		UserStories userstory=new UserStories();
 		Defects defect= new Defects();
 		TestCases testcase=new TestCases();
-	    
+		UserStories_CR userstory_details_cr=new UserStories_CR();
+		 
 		// get userstory values
 		
 		type_story_or_defect="userstory";	    
 	    TeamStatus temp=common_fun_obj.callRestApi_CR(team_name, sprint_name, type_story_or_defect, "iteration", CR_list);
-	    userstory=temp.getUserStories();		   
+	    userstory_details_cr=temp.getUserstories_cr();
+	    userstory=temp.getUserStories();	    
 	    TestCases testcase1=temp.getTestCases(); 
 	   
+	    
+	    //userstory_details_cr.displayAll(); //display cr details
+	    
 	    // get defect values
 		
 	    type_story_or_defect="defects";		
@@ -195,7 +206,7 @@ public class Get_Iteration_data
 		team_status.setUserStories(userstory);
 		team_status.setDefects(defect);			
 		team_status.setTestCases(testcase);  
-		
+		team_status.setUserstories_cr(userstory_details_cr);
 		//write to excel	
 		//write.write_automated_testcase_count(testcase, team_name, "iteration");
 		//write.write_Iteration_Status(team_status,team_name);		
