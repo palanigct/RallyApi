@@ -8,7 +8,7 @@ public class Patterns_App
 	    int width=5;
 	    int height=5;
 		
-	    pattern.pattern_32(width,height);   System.out.println(" ");
+	   // pattern.pattern_32(width,height);   System.out.println(" ");
 	    pattern.pattern_33(width, height);
 		
 		
