@@ -10,7 +10,7 @@ public class Patterns_App
 	
 	public void pattern_1(int width,int height)
 	{
-		
+		//asssdas
 	}
 	
 }
