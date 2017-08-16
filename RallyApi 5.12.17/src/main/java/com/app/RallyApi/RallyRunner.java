@@ -26,7 +26,7 @@ public class RallyRunner
 	
 	public static void main(String arg[]) throws Throwable
 	{
-		System.out.println("started\n");		
+		System.out.println("started\n");	
 		
 		
 		/*
