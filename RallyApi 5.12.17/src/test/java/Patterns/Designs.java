@@ -11,8 +11,8 @@ public class Designs
 	    int height=5;
 
 	    //System.out.println(common.abs(-10)+" "+common.abs(20));
-	    pattern.pattern_84(width,height);   System.out.println(" ");	    
-	    pattern.pattern_85(width, height);	   
+	    //pattern.pattern_87(width,height);   System.out.println(" ");	    
+	    pattern.pattern_86(width, height);	   
     }
 	
 	public void pattern_81(int width,int height)
@@ -132,6 +132,82 @@ public class Designs
 		}
 	}
 
+	public void pattern_86(int width,int height)
+	{
+		/*
+		
+		 *       * 
+		  *     *  
+		   *   *   
+		    * *    
+		     * 
+		 */    
+		
+		for(int i=1;i<=height;i++)
+		{
+			for(int j=height;j>=-height;j--)
+			{
+				//System.out.print(common.abs(j));
+				if(i==height-common.abs(j))
+				{
+					System.out.print("*");
+				}
+				else
+				{
+					System.out.print(" ");
+				}
+			}
+			System.out.println("");
+			
+		}
+	}
 
+	public void pattern_87(int width,int height)
+	{
+		/*
+		 
+		 1       1 
+		  2     2  
+		   3   3   
+		    4 4    
+		     5  
+		 
+		 */
+		
+		for(int i=1;i<=height;i++)
+		{
+			for(int j=height;j>=-height;j--)
+			{
+				if(i==height-common.abs(j))
+					System.out.print(height-common.abs(j));
+				else
+					System.out.print(" ");
+			}
+			System.out.println("");
+		}
+	}
+	
+	public void pattern_88(int width,int height)
+	{
+		/*
+		 5       5 
+		  4     4  
+		   3   3   
+		    2 2    
+		     1
+		*/
+		for(int i=1;i<=height;i++)
+		{
+			for(int j=height;j>=-height;j--)
+			{
+				if(i==height-common.abs(j))
+					System.out.print(common.abs(j)+1);
+				else
+					System.out.print(" ");
+			}
+			System.out.println("");
+		}
+	}
+	
 
 }
