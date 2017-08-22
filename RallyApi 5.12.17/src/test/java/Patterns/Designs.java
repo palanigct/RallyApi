@@ -1,5 +1,7 @@
 package Patterns;
 
+import java.util.Arrays;
+
 public class Designs 
 {
 	public static Designs pattern=new Designs();
@@ -12,7 +14,7 @@ public class Designs
 
 	    //System.out.println(common.abs(-10)+" "+common.abs(20));
 	    //pattern.pattern_89(width,height);   System.out.println(" ");	    
-	    pattern.pattern_95(width, height);	   
+	    pattern.pattern_101(width, height);	   
     }
 	
 	public void pattern_81(int width,int height)
@@ -437,11 +439,280 @@ public class Designs
 		}
 	}
 
+	public void pattern_96(int width,int height)
+	{
+		/*
+		
+		*********
+		**** ****
+		***   ***
+		**     **
+		*       *
+
+		*/
+		int k=height-1;
+		for(int i=0;i<=k;i++)
+		{
+			for(int j=k;j>=-k;j--)
+			{
+				if(i<=common.abs(j))
+					System.out.print("*");
+				else
+					System.out.print(" ");
+			}
+			System.out.println("");
+		}
+		
+		
+		//store the pattern in array
+		/*
+		int k=height;
+		char patt[][]=new char[100][100];	
+		
+		for(int i=0;i<k;i++)
+		{
+			for(int j=k-1;j>=-(k-1);j--)
+			{
+				if(i<=common.abs(j))
+					{ 
+					  //System.out.print(common.abs(j)); 					  
+					  if(j>=0)
+						  patt[i][k-common.abs(j)]=(char)(common.abs(j)+65);
+					  else
+					      patt[i][k+common.abs(j)]=(char)(common.abs(j)+65);				  
+					}				
+			}			
+		}
+				
+		for(int i=0;i<=height;i++)
+		{
+			for(int j=0;j<=height*2;j++)
+			{
+				System.out.print(patt[i][j]);
+			}
+			System.out.println("");				
+		}
+		*/
+	}
 	
+	public void pattern_97(int width,int height)
+	{
+	 
+	/*
+		*       *
+		**     **
+		***   ***
+		**** ****
+		*********
+		
+	*/	
+		int k=height-1;
+		for(int i=0;i<=k;i++)
+		{
+			for(int j=k;j>=-k;j--)
+			{
+				if(i>=k-common.abs(j))
+				    System.out.print("*");
+				else
+					System.out.print(" ");
+			}
+			System.out.println("");
+		}
+		
+	}
 	
+	public void pattern_98(int width,int height)
+	{
+		/*
+		  
+		  
+		  	4       4
+			43     34
+			432   234
+			4321 1234
+			432101234
+			4321 1234
+			432   234
+			43     34
+			4       4
+		  		
+		  
+		  
+		 int k=height-1;
+		for(int i=k;i>=-k;i--)
+		{
+			for(int j=k;j>=-k;j--)
+			{
+				//System.out.print(common.abs(i)+"-"+common.abs(j)+" ");
+				if(common.abs(i)<=common.abs(j))
+					System.out.print(common.abs(j));
+				else
+					System.out.print(" ");
+			}
+			System.out.println("");
+		}*/
+		
+		
+		/*
+		
+		for(int i=0;i<k;i++)
+		{
+			for(int j=1;j<k*2;j++)
+			{
+				if((j>=k+i)||(j<=k-i))
+					System.out.print(j);
+				else
+					System.out.print(" ");
+			}
+			System.out.println("");
+		}
+	  */
+		
+		/*
+		 
+		*      *
+		**    **
+		***  ***
+		********
+		***  ***
+		**    **
+		*      *
+		
+		*/
+		
+		int k=height-1;
+			
+		for(int i=0;i<k;i++)
+		{
+			for(int j=0;j<k*2;j++)
+			{
+				if(i>=j||((k*2-1)-i)<=j)
+					System.out.print("*");
+				else
+					System.out.print(" ");
+			}
+			System.out.println("");
+		}
+		
+		for(int i=k-2;i>=0;i--)
+		{
+			for(int j=0;j<k*2;j++)
+			{
+				if(i<j&&((k*2-1)-i)>j)
+					System.out.print(" ");
+				else
+					System.out.print("*");
+			}
+			System.out.println("");
+		}
+				
+  }
+
+	public void pattern_99(int width,int height)
+	{
+		/*
+		
+	     *      *
+	    ***    ***
+	   *****  *****
+	  **************
+		
+		*/
+		
+		/*int k=height-1;
+		for(int i=0;i<k;i++)
+		{	
+			
+			for(int s=0;s<(k-i);s++)
+			{
+				System.out.print(" ");
+			}
+			
+			for(int j=0;j<=i*2;j++)
+			{		
+				System.out.print("*");
+			}
+			
+			for(int s=0;s<(k*2-2)-(i*2);s++)
+			{
+				System.out.print(" ");
+			}
+			
+			for(int j=0;j<=i*2;j++)
+			{		
+				System.out.print("*");
+			}
+			
+			System.out.println("");
+		}
+		*/	
+		
+		int k=height-1;
+		for(int i=0;i<k;i++)
+		{				
+			common.printSpaceEdge(i, k);
+			
+			for(int j=0;j<2;j++)
+			{
+				common.printStar3(i);			
+				common.printSpaceCenter(i, k);
+			}
+					
+			System.out.println("");
+		}
+	}
 	
+	public void pattern_100(int width,int height)
+	{
+		/*
+		
+	      *         *         
+	     * *       * *       
+	    * * *     * * *     
+	   * * * *   * * * *   
+	  * * * * * * * * * * 
+		
+		
+		*/
+		
+		int k=height;
+		for(int i=0;i<k;i++)
+		{				
+			common.printSpaceEdge(i, k);
+			
+			for(int j=0;j<2;j++)
+			{
+				common.printStar2(i);			
+				common.printSpaceCenter(i, k);
+			}
+					
+			System.out.println("");
+		}
+	}
+		
+	public void pattern_101(int width,int height)
+	{
+		/*
+		
+	       *     
+	      * *   
+	     * * * 
+	    *     *     
+	   * *   * *   
+	  * * * * * *  
+		
+		*/
+		
+		int k=height-2;		
+	    common.printPyramid_2(k, 1,k);
+	    common.printPyramid_2(k, 2,0);
+	}
 	
-}
+
+	
+
+
+}//end of class
 
 
 
