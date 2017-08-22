@@ -1,10 +1,10 @@
 package Patterns;
 
-public class Patterns_App 
+public class PatternsApp_1 
 {
 	public static void main(String arg[])
     {
-		Patterns_App pattern=new Patterns_App();
+		PatternsApp_1 pattern=new PatternsApp_1();
 	    int width=5;
 	    int height=5;
 		

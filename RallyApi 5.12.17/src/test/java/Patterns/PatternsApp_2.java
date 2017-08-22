@@ -2,9 +2,9 @@ package Patterns;
 
 import java.util.Arrays;
 
-public class Designs 
+public class PatternsApp_2 
 {
-	public static Designs pattern=new Designs();
+	public static PatternsApp_2 pattern=new PatternsApp_2();
 	public static Common common=new Common();
 	
 	public static void main(String arg[])
