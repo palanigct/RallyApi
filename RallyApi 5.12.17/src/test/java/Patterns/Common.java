@@ -82,4 +82,44 @@ public class Common
 		}
     }
 	
+    //====================================================
+    
+    public void printSpaceC(int i,int height)
+	{
+    	int k=height;    	
+    	
+		for(int s=0;s<((k*2)-(i*2));s++)
+		{
+			System.out.print(" ");
+		}
+	}
+	
+  
+
+    
+    
+	public void printSpaceE(int i,int height)
+	{
+		int k=height;
+		for(int s=0;s<(k-i);s++)
+		{
+			System.out.print(" ");
+		}
+	}
+
+    
+    public void printChar(int i,char ch1,char ch2)
+	{
+		for(int j=1;j<=i*2;j++)
+		{		
+			if(j==1)
+			   System.out.print(ch1);
+			else if(j==i*2)
+				System.out.print(ch2);
+			else				
+				System.out.print(" ");
+		}
+	}
+
+
 }
