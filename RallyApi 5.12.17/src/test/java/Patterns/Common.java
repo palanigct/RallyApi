@@ -4,7 +4,24 @@ public class Common
 {
 
 	public static Common common=new Common();
+	public static int  number=0;
 	
+	public static Common getCommon() {
+		return common;
+	}
+
+	public static void setCommon(Common common) {
+		Common.common = common;
+	}
+
+	public static int getNumber() {
+		return number;
+	}
+
+	public static void setNumber(int number) {
+		Common.number = number;
+	}
+
 	public int abs(int num)
 	{
 		int ans=0;
@@ -93,11 +110,7 @@ public class Common
 			System.out.print(" ");
 		}
 	}
-	
-  
-
-    
-    
+       
 	public void printSpaceE(int i,int height)
 	{
 		int k=height;
@@ -106,7 +119,6 @@ public class Common
 			System.out.print(" ");
 		}
 	}
-
     
     public void printChar(int i,char ch1,char ch2)
 	{
@@ -121,5 +133,90 @@ public class Common
 		}
 	}
 
-
+    public void printNumWave(int i,int height,int lenth)
+	{
+    	int space_count=0;    
+    	int center_space1=(i*2-2)*lenth;
+    	int center_space2=((height*2)-(i*2)+2)*lenth;
+    	
+    	
+    	int num= height-i+center_space1+center_space2+space_count+1;
+    	
+    	
+		for(int j=1;j<=i*2;j++)
+		{		
+			String formatted_num1 = String.format("%02d", num);
+	    	String formatted_num2 = String.format("%02d", num+space_count+1);
+			
+			if(j==1)
+			   System.out.print(formatted_num1);
+			else if(j==i*2)
+				System.out.print(formatted_num2);
+			else
+			{
+				System.out.print(" ");
+				space_count++;
+			}
+				
+		}
+	}
+    
+    public void printCharWave(int i,int height,int lenth)
+	{
+    	int space_count=0;    
+    	int center_space1=(i*2-2)*lenth;
+    	int center_space2=((height*2)-(i*2)+2)*lenth;
+    	
+    	
+    	int num= height-i+center_space1+center_space2+space_count+1;
+    	
+    	
+		for(int j=1;j<=i*2;j++)
+		{		
+		    int ch1 = (num+64);
+	    	int ch2 = (num+space_count+65);
+	    	
+	    	if(((ch1-65)/26)!=0)
+	    	{
+	    		int c=(ch1-65)/26;
+	    		int change_val=26*c;
+	    		ch1-=change_val;
+	    	}
+			
+	    	if(((ch2-65)/26)!=0)
+	    	{
+	    		int c=(ch2-65)/26;
+	    		int change_val=26*c;
+	    		ch2-=change_val;
+	    	}
+	    	
+	    	
+			if(j==1)
+			   System.out.print((char)ch1);
+			else if(j==i*2)
+				System.out.print((char)ch2);
+			else
+			{
+				System.out.print(" ");
+				space_count++;
+			}
+				
+		}
+	}
+    
+    
+    //========================================================
+    
+    public void printSpace(int count)
+    {
+    	for(int i=0;i<count;i++)
+    	{
+    		System.out.print(" ");
+    	}
+    }
+    
+    public void printChar(char ch)
+    {
+    	System.out.print(ch);
+    }
 }
