@@ -29,7 +29,8 @@ public class Game_1
 		fill_array(dim);
 		disp_array(dim);
 		boolean condition=true;
-		int count=0;	
+		int count=0;
+		String winner="";
 		
 		while(condition==true&&count<9)
 		{	
@@ -42,16 +43,82 @@ public class Game_1
 			if(count%2==0)
 				player1=true;
 			else
-				player1=false;
+				player1=false;		
 			
-			System.out.println("Win status : "+game.win_player());
+			winner=game.winner_2();
+			if(winner=="Nill")
+				condition=true;
+			else
+				condition=false;
 		}
+		
+		//WINNING status : 
+		System.out.println("\n\n      "+game.winner_2());
 	}
 	
-	public String win_player()
+	
+	public String winner_2()
 	{
 		int dim=3;
-		String win="Nill";
+		String winner="Nill";		
+			
+		for(int i=0;i<dim;i++)
+		{		
+			int count1=0;
+			int count2=0;
+			int count3=0;
+			int count4=0;
+					
+			for(int j=0;j<dim;j++)
+			{
+				if(box[i][0]==box[i][j]&&box[i][0]!='-') count1++;
+				if(box[0][i]==box[j][i]&&box[0][i]!='-') count2++;
+				if(box[0][0]==box[j][j]&&box[0][0]!='-') count3++;
+				if(box[0][dim-1]==box[j][(dim-1)-j]&&box[j][dim-1]!='-') count4++; 
+			}
+			
+			if(count1==3)
+			{
+				if(box[i][0]=='x')
+					 winner="PLAYER 1 WIN";
+				else
+					 winner="PLAYER 2 WIN";
+				break;	
+			}
+			if(count2==3)
+			{
+				if(box[0][i]=='x')
+					 winner="PLAYER 1 WIN";
+				else
+					 winner="PLAYER 2 WIN";
+				break;			
+			}
+			if(count3==3)
+			{
+				if(box[0][0]=='x')
+					 winner="PLAYER 1 WIN";
+				else
+					 winner="PLAYER 2 WIN";
+				break;			
+			}
+			if(count4==3)
+			{
+				if(box[0][dim-1]=='x')
+					 winner="PLAYER 1 WIN";
+				else
+					 winner="PLAYER 2 WIN";
+				break;			
+			}
+		}
+		
+		
+		return winner;
+	}
+	
+	public String winner()
+	{
+		int dim=3;
+		String winner="Nill";
 		
 		
 		for(int i=0;i<dim;i++)
@@ -72,22 +139,23 @@ public class Game_1
 			
 			if(count==3)
 			{
-				if(ch1=='x') win="PLAYER 1 WIN";
-				else 		 win="PLAYER 2 WIN";
+				if(ch1=='x') winner="PLAYER 1 WIN";
+				else 		 winner="PLAYER 2 WIN";
 				break;
 			}			
 			
 		}	
 		
 		
-		return win;
+		return winner;
 	}
-	public String getInput()
+	
+    public String getInput()
 	{
 		if(player1==true)
-			System.out.println("\n Enter the Input (PLAYER 1): \n\n");
+			System.out.println("\n Enter the Input (PLAYER 1):");
 		else
-			System.out.println("\n Enter the Input (PLAYER 2): \n\n");
+			System.out.println("\n Enter the Input (PLAYER 2):");
 		
 		Scanner sc=new Scanner(System.in);
 		String str=sc.next();
@@ -104,7 +172,7 @@ public class Game_1
 		int j=(int)ch1;
 		i-=49;
 		j-=65;
-		System.out.println(j+" "+i);
+		//System.out.println(j+" "+i);
 		
 		if(player1==true)
 		{
