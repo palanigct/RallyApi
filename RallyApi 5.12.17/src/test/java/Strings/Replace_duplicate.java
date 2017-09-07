@@ -13,15 +13,14 @@ public class Replace_duplicate
 	{
 		
 		String str="cfgzz8999";
-		replace_duplicate.replace(str);
+		//replace_duplicate.replace(str);
 	
 		
 		Arrays.fill(exist_char, 0);
 		
 		System.out.println("Enter the input string : ");
 		Scanner get=new Scanner(System.in);
-		str=get.next();
-		System.out.println(" out : "+str);
+		str=get.next();		
 		replace_duplicate.replace(str);
 		
 	}
@@ -67,7 +66,7 @@ public class Replace_duplicate
 			
 		}// end-for
 		
-		System.out.println(str+ " "+final_string);
+		System.out.println("Out put : old - "+str+ " New - "+final_string);
 	}
 	
 	public char resultChar(char ch)

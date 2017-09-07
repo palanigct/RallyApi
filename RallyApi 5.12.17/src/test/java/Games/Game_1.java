@@ -5,8 +5,6 @@ import java.util.Scanner;
 /*  1) 'x' and '0' game in 3x3 boxes  2) two player game 3) x,0 is the players input   */
 
 
-
-
 public class Game_1 
 {
 	public static char box[][]=new char[100][100];
@@ -14,6 +12,7 @@ public class Game_1
 	public static Common  common = new Common();
 	
 	public boolean player1=true;
+	
 	
 	public static void main(String arg[])
 	{
@@ -55,13 +54,13 @@ public class Game_1
 		//WINNING status : 
 		System.out.println("\n\n      "+game.winner_2());
 	}
-	
-	
+		
 	public String winner_2()
 	{
 		int dim=3;
 		String winner="Nill";		
-			
+		int lastIndex=dim-1;	
+		
 		for(int i=0;i<dim;i++)
 		{		
 			int count1=0;
@@ -74,7 +73,7 @@ public class Game_1
 				if(box[i][0]==box[i][j]&&box[i][0]!='-') count1++;
 				if(box[0][i]==box[j][i]&&box[0][i]!='-') count2++;
 				if(box[0][0]==box[j][j]&&box[0][0]!='-') count3++;
-				if(box[0][dim-1]==box[j][(dim-1)-j]&&box[j][dim-1]!='-') count4++; 
+				if(box[0][lastIndex]==box[j][lastIndex-j]&&box[0][lastIndex]!='-') count4++; 
 			}
 			
 			if(count1==3)
@@ -115,55 +114,50 @@ public class Game_1
 		return winner;
 	}
 	
-	public String winner()
-	{
-		int dim=3;
-		String winner="Nill";
-		
-		
-		for(int i=0;i<dim;i++)
-		{
-			int count=0;
-			char ch1=' ';
-			
-			if(box[i][0]=='-') ch1=' ';
-			else 			   ch1=box[i][0];	
-			
-			for(int j=0;j<dim;j++)
-			{
-				if(ch1!=box[i][j])				
-					break;				
-				else
-					count++;
-			}
-			
-			if(count==3)
-			{
-				if(ch1=='x') winner="PLAYER 1 WIN";
-				else 		 winner="PLAYER 2 WIN";
-				break;
-			}			
-			
-		}	
-		
-		
-		return winner;
-	}
-	
     public String getInput()
 	{
-		if(player1==true)
-			System.out.println("\n Enter the Input (PLAYER 1):");
-		else
-			System.out.println("\n Enter the Input (PLAYER 2):");
+    	String input_str="";
+    	boolean input_status=true;
+    	int count=0;
+    	while(input_status==true)
+    	{
+    		if(player1==true&&count==0)
+    			System.out.println("\n Enter the Input (PLAYER 1):");
+    		else if(player1==false&&count==0)
+    			System.out.println("\n Enter the Input (PLAYER 2):");
+    		else if(player1==true&&count!=0)    		
+    			System.out.println("\n Enter the Correct Input (PLAYER 1):");
+    		else if(player1==false&&count!=0)    		
+    			System.out.println("\n Enter the Correct Input (PLAYER 2):");
+    		
+    		Scanner sc=new Scanner(System.in);
+    		input_str=sc.next();		
+    		
+    		input_status=check_valid_input(input_str); 
+    		//System.out.println("count : "+count);
+    		count++;    		
+    	}			
 		
-		Scanner sc=new Scanner(System.in);
-		String str=sc.next();
-		//char ch[]=str.toCharArray();
-		
-		return str;
+		return input_str;
 	}
 	
+    public boolean check_valid_input(String input)
+    {
+    	boolean input_status = false;
+    	char ch1 = input.charAt(0);
+		char ch2 = input.charAt(1);
+		int i=(int)ch2;
+		int j=(int)ch1;
+		i-=49;
+		j-=65;
+		if(box[i][j]=='-')
+			input_status=false;
+		else
+			input_status=true;
+		
+    	return input_status;
+    }
+    
 	public void fill_array_with_input(String str)
 	{
 		char ch1 = str.charAt(0);
@@ -218,6 +212,9 @@ public class Game_1
 		}
 	}
 	
+	
+	//--------------------------Not Used--------------------------------------------------
+	
 	public void disp_board()
 	{
 		print_box(3);
@@ -257,4 +254,40 @@ public class Game_1
 		}
 	}
 	
+	public String winner()
+	{
+		int dim=3;
+		String winner="Nill";
+		
+		
+		for(int i=0;i<dim;i++)
+		{
+			int count=0;
+			char ch1=' ';
+			
+			if(box[i][0]=='-') ch1=' ';
+			else 			   ch1=box[i][0];	
+			
+			for(int j=0;j<dim;j++)
+			{
+				if(ch1!=box[i][j])				
+					break;				
+				else
+					count++;
+			}
+			
+			if(count==3)
+			{
+				if(ch1=='x') winner="PLAYER 1 WIN";
+				else 		 winner="PLAYER 2 WIN";
+				break;
+			}			
+			
+		}	
+		
+		
+		return winner;
+	}
+	
+
 }
